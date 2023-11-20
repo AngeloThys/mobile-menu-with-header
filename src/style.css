@@ -40,18 +40,131 @@ main {
   background-color: var(--secondary-pink);
 }
 
-aside {
+.menu {
   z-index: 1;
   width: 0;
+  min-width: 0;
   background-color: var(--primary-pink);
   height: 100%;
-  border-right: 4px solid black;
-  box-shadow: 0px 0px 4px black;
-  transition: width 0.5s ease-in-out;
+  border-right: 0px solid black;
+  transition:
+    width 0.5s ease-in-out,
+    min-width 0.5s ease-in-out,
+    border-right 0s 0.5s ease-in-out;
 }
 
-aside.active {
+.menu.active {
   width: 25%;
+  min-width: 250px;
+  border-right: 4px solid black;
+  box-shadow: 0px 0px 4px black;
+  transition:
+    width 0.5s ease-in-out,
+    min-width 0.5s ease-in-out;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 2rem;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.menu-container.active {
+  padding: 1.5rem 0 0 2rem;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.menu-item-header {
+  position: relative;
+  margin: 0;
+  opacity: 0;
+  transition:
+    opacity 0.2s 0.5s ease-in-out,
+    font-size 0.2s 0.5s ease-in-out,
+    color 0.7s ease-in-out;
+}
+
+.menu-item-header.active {
+  font-weight: 700;
+  font-size: 1.5rem;
+  opacity: 1;
+  transition: color 0.1s 0.5s ease-in-out;
+}
+
+.menu-item-header.active.selected {
+  transition: color 0.5s ease-in-out;
+  color: white;
+}
+
+.menu-item-header:hover {
+  transition: color 0.1s 0.2s ease-in-out;
+  color: var(--primary-green);
+}
+
+.menu-item-header::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  transition:
+    width 0.7s ease-in-out,
+    background-color 0s 0.7s ease-in-out;
+  display: inline-block;
+  content: "";
+}
+
+.menu-item-header:hover::after {
+  transition: width 0.2s ease-in-out;
+  width: 100%;
+  background-color: var(--primary-green);
+}
+
+.menu-item-header.active.selected::after {
+  transition:
+    width 0.3s ease-in-out,
+    background-color 0.3s 0.3s ease-in-out;
+  width: 100%;
+  background-color: white;
+}
+
+.submenu {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.submenu.active {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  height: auto;
+  width: 100%;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+}
+
+.submenu-item-header {
+  margin: 0;
+  height: 0;
+  width: 0;
+}
+
+.submenu-item-header.active {
+  transition: opacity 0.5s 0.2s ease-in-out;
+  height: auto;
+  width: 100%;
 }
 
 .menu-button {
@@ -99,6 +212,7 @@ aside.active {
   width: 46px;
   background-color: var(--primary-green);
   transition: all 0.5s ease-in-out;
+  border-radius: 4px;
 }
 
 .icon-part.part-1 {
