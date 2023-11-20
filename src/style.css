@@ -1,0 +1,131 @@
+:root {
+  --primary-pink: #ff8787;
+  --secondary-pink: #ffc9c9;
+  --tertiary-pink: #fa5252;
+  --primary-green: #12b886;
+  --secondary-green: #099268;
+  --tertiary-green: #38d9a9;
+}
+
+* {
+  font-family: "Oswald", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  grid:
+    "header" 1.5fr
+    "main" 8.5fr;
+}
+
+header {
+  grid-area: header;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 2.5fr 7.5fr;
+  border-bottom: 4px solid black;
+  box-shadow: 0px 0px 4px black;
+}
+
+main {
+  grid-area: main;
+  background-color: var(--secondary-pink);
+}
+
+aside {
+  z-index: 1;
+  width: 0;
+  background-color: var(--primary-pink);
+  height: 100%;
+  border-right: 4px solid black;
+  box-shadow: 0px 0px 4px black;
+  transition: width 0.5s ease-in-out;
+}
+
+aside.active {
+  width: 25%;
+}
+
+.menu-button {
+  place-self: center left;
+  margin-left: 2rem;
+  cursor: pointer;
+  display: grid;
+}
+
+.logo {
+  place-self: center left;
+  margin-left: 2rem;
+}
+
+.logo h3 {
+  font-family: "Oswald", sans-serif;
+  margin: 0;
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--tertiary-pink);
+}
+
+.icon-container {
+  position: relative;
+  place-self: center;
+  height: 60px;
+  width: 60px;
+  border: 4px solid var(--secondary-green);
+  border-radius: 8px;
+  transition: all 0.5s ease-in-out;
+}
+
+.icon-container.active {
+  border-color: transparent;
+}
+
+.icon-container:hover {
+  background-color: rgba(130, 130, 130, 0.125);
+}
+
+.icon-part {
+  position: absolute;
+  display: inline-block;
+  height: 4px;
+  width: 46px;
+  background-color: var(--primary-green);
+  transition: all 0.5s ease-in-out;
+}
+
+.icon-part.part-1 {
+  transform-origin: center;
+  transform: translate(calc((52px - 46px) / 2), calc((52px - 4px) / 4 * 1));
+}
+
+.icon-part.part-1.active {
+  transform: translate(3px, 25px) rotate(45deg);
+}
+
+.icon-part.part-2 {
+  transform-origin: center;
+  transform: translate(calc((52px - 46px) / 2), calc((52px - 4px) / 4 * 2));
+  transition: all 0.25s 0.25s ease-out;
+}
+
+.icon-part.part-2.active {
+  transition: all 0.25s;
+  background-color: transparent;
+}
+
+.icon-part.part-3 {
+  transform-origin: center;
+  transform: translate(calc((52px - 46px) / 2), calc((52px - 4px) / 4 * 3));
+}
+
+.icon-part.part-3.active {
+  transform: translate(3px, 25px) rotate(-45deg);
+}
